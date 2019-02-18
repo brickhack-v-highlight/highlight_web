@@ -5,8 +5,8 @@ import { Rss, Close } from 'grommet-icons';
 import { subscribeToMediaServer } from './api';
 // twitchToId: mapping of twitch urls to their ids
 // herokuString: url string of the heroku microservice used to set a phone as active
-import { twitchToId, herokuString } from '../config';
 import https from 'https';
+const { twitchToId, herokuString } = require('./config');
 
 const sendGet = url => {
   https.get(url, resp => {}).on('error', err => {});

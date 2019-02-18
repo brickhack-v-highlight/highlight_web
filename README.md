@@ -1,4 +1,47 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# highlight
+
+## Installing dependencies
+
+In the project directory, run the following command: 
+
+### `npm install`
+
+Installs all of the necessary dependencies.
+
+## Setting up configuration
+
+You will need to set up the [streaming app client](https://github.com/brickhack-v-highlight/highlight_app) and [backend microservice](https://github.com/brickhack-v-highlight/highlight_microservice). 
+
+You will also need to create your own config.js in the root of the project's src directory to match your settings in the aforementioned app & backend:
+
+`twitchToId`: an object mapping twitch url strings to their ids (also as strings)
+
+`urls`: a list of the urls (as strings) you wish to broadcast on the dashboard and jumbotron
+
+`herokuString`: the string form of the api call to the backend microservice for setting a phone as active
+
+[config.js]
+---
+```
+const twitchToId = {
+  "https://twitch.tv/example": 1234567891,
+  ...
+};
+
+const urls = [
+  https://twitch.tv/example,
+  https://www.youtube.com/watch?v=oHg5SJYRHA0,
+  ...
+];
+
+const herokuString = "https://myhighlightmicroservice.herokuapp.com/set_active";
+
+module.exports = {
+  twitchToId: twitchToId,
+  urls: urls,
+  herokuString: herokuString
+};
+```
 
 ## Available Scripts
 
@@ -7,10 +50,21 @@ In the project directory, you can run:
 ### `npm start`
 
 Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Open [http://localhost:3000](http://localhost:3000) to view the dashboard in the browser.
+
+Open [http://localhost:3000/jumbo](http://localhost:3000/jumbo) to view the highlight in the browser.
 
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
+
+
+### `node server`
+
+Runs the server for the app in development mode.<br>
+By default this is listening at [http://localhost:8000](http://localhost:8000)
+
+This server controls the frequency for which the app polls for new urls.
+-Not fully implemented-
 
 ### `npm test`
 
@@ -24,45 +78,3 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 The build is minified and the filenames include the hashes.<br>
 Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify

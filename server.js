@@ -1,4 +1,4 @@
-import { urls } from './config'; // list of urls to be streamed
+const { urls } = require('./src/config');
 const io = require('socket.io')();
 
 let i = 0;
